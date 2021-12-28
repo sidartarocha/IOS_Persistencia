@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class GamesTableTableViewController: UITableViewController {
+class GamesTableViewController: UITableViewController {
 
     
     // esse tipo de classe oferece mais recursos para monitorar os dados
@@ -167,7 +167,7 @@ class GamesTableTableViewController: UITableViewController {
 
 
 
-extension GamesTableTableViewController: NSFetchedResultsControllerDelegate {
+extension GamesTableViewController: NSFetchedResultsControllerDelegate {
     
     // sempre que algum objeto for modificado esse metodo sera notificado
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -192,7 +192,7 @@ extension GamesTableTableViewController: NSFetchedResultsControllerDelegate {
 }
 
 
-extension GamesTableTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
+extension GamesTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
