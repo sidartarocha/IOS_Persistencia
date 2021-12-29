@@ -57,38 +57,36 @@ class CarsTableViewController: UITableViewController {
 
     
     @objc func loadCars() {
-        REST.loadCars { cars in
+        //Atualizando para alamofire
+        RestAlamofire.loadCars(onComplete: { (cars) in
             
             self.cars = cars
-            
-                // precisa recarregar a tableview usando a main UI thread
+                  
             DispatchQueue.main.async {
-                
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
             }
             
-        } onError: { error in
-                // se tiver erro
             
+        }) { (error) in
             
             var response: String = ""
             
             switch error {
-                case .invalidJSON:
-                    response = "invalidJSON"
-                case .noData:
-                    response = "noData"
-                case .noResponse:
-                    response = "noResponse"
-                case .url:
-                    response = "JSON inválido"
-                case .taskError(let error):
-                    response = "\(error?.localizedDescription ?? "Erro genérico!")"
-                case .responseStatusCode(let code):
-                    if code != 200 {
-                        response = "Algum problema com o servidor. :( \nError:\(code)"
-                    }
+            case .invalidJSON:
+                response = "invalidJSON"
+            case .noData:
+                response = "noData"
+            case .noResponse:
+                response = "noResponse"
+            case .url:
+                response = "JSON inválido"
+            case .taskError(let error):
+                response = "\(error?.localizedDescription)"
+            case .responseStatusCode(let code):
+                if code != 200 {
+                    response = "Problema com serviço. :( \nError:\(code)"
+                }
             }
                 // TODO utilizar um alerta para mostrar o erro
             print(response)
@@ -149,23 +147,39 @@ class CarsTableViewController: UITableViewController {
             
             // 1
             let car = cars[indexPath.row]
-            REST.delete(car: car) { (success) in
+            //Atualizando para alamofire
+            RestAlamofire.delete(car: car, onComplete: { (success) in
                 if success {
-                    
-                    // ATENCAO nao esquecer disso
-                    // removendo o objeto da estrutura
-                    self.cars.remove(at: indexPath.row)
-                    
-                    DispatchQueue.main.async {
-                            // Delete the row from the data source
-                        tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                 // ATENCAO nao esquecer disso
+                 self.cars.remove(at: indexPath.row)
+                
+                 DispatchQueue.main.async {
+                     // Delete the row from the data source
+                     tableView.deleteRows(at: [indexPath], with: .fade)
                     }
                     
-                    // PODE_SE chamar o loadCars() para nao precisar usar as linhas acima
-                    // o lado ruim de chamar o loadCars é que iremos fazer uma nova requisicao
-                    // para o servidor
                 }
-            }
+            }) { (carErro) in
+                var response: String = ""
+                            
+                            switch carErro {
+                                case .invalidJSON:
+                                    response = "invalidJSON"
+                                case .noData:
+                                    response = "noData"
+                                case .noResponse:
+                                    response = "noResponse"
+                                case .url:
+                                    response = "JSON inválido"
+                                case .taskError(let error):
+                                response = "\(error?.localizedDescription)"
+                                case .responseStatusCode(let code):
+                                    if code != 200 {
+                                        response = "Não foi possivel excluir. :( \nError:\(code)"
+                                    }
+                            }
+                }
             
         }
     }

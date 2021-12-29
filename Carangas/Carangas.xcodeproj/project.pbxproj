@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57D9B9CF277BFE5300569623 /* RestAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9B9CE277BFE5300569623 /* RestAlamofire.swift */; };
 		789893266B5BA9F2E304B4F6 /* Pods_Carangas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20E05A96B7412DA1B5A41B0 /* Pods_Carangas.framework */; };
 		A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B18D041F9C1BDD00313110 /* AppDelegate.swift */; };
 		A1B18D0A1F9C1BDD00313110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D081F9C1BDD00313110 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		19E2CC4D294FCF292EF8360B /* Pods-Carangas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carangas.release.xcconfig"; path = "Target Support Files/Pods-Carangas/Pods-Carangas.release.xcconfig"; sourceTree = "<group>"; };
+		57D9B9CE277BFE5300569623 /* RestAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAlamofire.swift; sourceTree = "<group>"; };
 		A1B18D011F9C1BDD00313110 /* Carangas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carangas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B18D041F9C1BDD00313110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B18D091F9C1BDD00313110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				A1B18D181F9C1DBA00313110 /* AddEditViewController.swift */,
 				A1B18D1A1F9C1DCF00313110 /* CarViewController.swift */,
 				ED46079D276D4C5300362118 /* REST.swift */,
+				57D9B9CE277BFE5300569623 /* RestAlamofire.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				ED46079E276D4C5300362118 /* REST.swift in Sources */,
 				A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */,
 				ED460799276D4AC800362118 /* Car.swift in Sources */,
+				57D9B9CF277BFE5300569623 /* RestAlamofire.swift in Sources */,
 				ED4607A0276E12DF00362118 /* Brand.swift in Sources */,
 				A1B18D191F9C1DBA00313110 /* AddEditViewController.swift in Sources */,
 				A1B18D1B1F9C1DCF00313110 /* CarViewController.swift in Sources */,

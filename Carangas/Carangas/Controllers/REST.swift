@@ -26,11 +26,11 @@ enum RESTOperation {
 
 class REST {
     
-    private static let basePath = "https://carangas.herokuapp.com/cars"
+    static let basePath = "https://carangas.herokuapp.com/cars"
     
     
     // baseada no servico: https://deividfortuna.github.io/fipe/
-    private static let urlFipe = "https://parallelum.com.br/fipe/api/v1/carros/marcas"
+    static let urlFipe = "https://parallelum.com.br/fipe/api/v1/carros/marcas"
     
     
     private static let session = URLSession(configuration: configuration)
@@ -45,7 +45,7 @@ class REST {
     }()
     
     
-    static func loadCars(onComplete: @escaping ([Car]) -> Void, onError: @escaping (CarError) -> Void) {
+  /* static func loadCars(onComplete: @escaping ([Car]) -> Void, onError: @escaping (CarError) -> Void) {
         
         guard let url = URL(string: basePath) else {
             onError(.url)
@@ -109,7 +109,7 @@ class REST {
     
     static func delete(car: Car, onComplete: @escaping (Bool) -> Void) {
         applyOperation(car: car, operation: .delete, onComplete: onComplete)
-    }
+    }*/
     
     static func loadBrands(onComplete: @escaping ([Brand]?) -> Void) {
         

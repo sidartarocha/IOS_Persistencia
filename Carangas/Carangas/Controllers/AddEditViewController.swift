@@ -148,33 +148,59 @@ class AddEditViewController: UIViewController {
     func salvar() {
         
         startLoadingAnimation()
-        
-        REST.save(car: car) { foiSalvoComSucesso in
+        //Alterando do rest para Alamofire
+        RestAlamofire.save(car: car!, onComplete: { (sucess) in
+            self.goBack()
+        }, onError: { (carError) in
+            var response: String = ""
             
-            if foiSalvoComSucesso {
-                    // foi salvo
-                self.goBack()
-            } else {
-                    // nao foi salvo por algum motivo
-                print("-problemas ao salva -> mostrar um alerta para o usuario <-")
-                self.showAlert(withTitle: "Savar", withMessage: "Ocorreu um erro ao tentar salvar.", isTryAgain: true, operation: .add_car)
+            switch carError {
+                case .invalidJSON:
+                    response = "invalidJSON"
+                case .noData:
+                    response = "noData"
+                case .noResponse:
+                    response = "noResponse"
+                case .url:
+                    response = "JSON inválido"
+                case .taskError(let error):
+                response = "\(error?.localizedDescription)"
+                case .responseStatusCode(let code):
+                    if code != 200 {
+                        response = "Ocorreu um erro ao tentar salvar.. :( \nError:\(code)"
+                    }
             }
-        }
+            
+            print(response)
+        })
     }
     
     func editar() {
-        
-        startLoadingAnimation()
-        
-        REST.update(car: car) { foiEditadoComSucesso in
-            
-            if foiEditadoComSucesso {
-                self.goBack()
-            } else {
-                print("-problemas ao EDITAR -> mostrar um alerta para o usuario <-")
-                self.showAlert(withTitle: "Editar", withMessage: "Ocorreu um erro ao tentar Editar esse carro.", isTryAgain: true, operation: .edit_car)
-            }
-        }
+        //Alterando do rest para Alamofire
+        RestAlamofire.update(car: car!, onComplete: { (sucess) in
+                   self.goBack()
+               }, onError: { (carError) in
+                   var response: String = ""
+                
+                   switch carError {
+                   case .invalidJSON:
+                       response = "invalidJSON"
+                   case .noData:
+                       response = "noData"
+                   case .noResponse:
+                       response = "noResponse"
+                   case .url:
+                       response = "JSON inválido"
+                   case .taskError(let error):
+                       response = "\(error?.localizedDescription)"
+                   case .responseStatusCode(let code):
+                       if code != 200 {
+                           response = "Algum problema com o servidor. :( \nError:\(code)"
+                       }
+                   }
+                   // TODO substituir por um objeto Alerta para exibir para o usuario
+                   print(response)
+               })
     }
     
     
